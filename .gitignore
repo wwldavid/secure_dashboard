@@ -49,3 +49,4 @@ next-env.d.ts
 Thumbs.db
 
 .railway/
+/src/generated/prisma
