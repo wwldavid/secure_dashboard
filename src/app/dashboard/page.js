@@ -35,7 +35,7 @@ export default async function DashboardPage() {
 
       <section className="mt-8">
         <h2 className="text-xl mb-4">Update Private Personal Material</h2>
-        <ProfileForm initial={{ name: user.name, email, bio: biography }} />
+        <ProfileForm privateData={{ name: user.name, email, bio: biography }} />
       </section>
 
       <form method="post" action="/api/auth/signout">
