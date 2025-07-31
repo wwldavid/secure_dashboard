@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import { prisma } from "@/lib/prisma";
-import { decrypt } from "@/lib/crypto";
+import { prisma } from "../../../lib/prisma";
+import { decrypt } from "../../../lib/crypto";
 import { redirect } from "next/navigation";
 import ProfileForm from "./ProfileForm";
 

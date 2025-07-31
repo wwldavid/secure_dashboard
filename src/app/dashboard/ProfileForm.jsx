@@ -20,12 +20,31 @@ export default function ProfileForm({ privateData }) {
       body: JSON.stringify(form),
     });
 
+    // 先把响应体读成文本
+    const text = await res.text();
+
     if (!res.ok) {
-      const body = await res.json();
-      setError(body.errors?.map((e) => e.msg).join(";") || "unknown error");
-    } else {
-      alert("successfully updated!");
+      let errMsg = "unknown error";
+
+      // 尝试解析为 JSON
+      try {
+        const json = JSON.parse(text);
+        if (Array.isArray(json.errors)) {
+          errMsg = json.errors.map((e) => e.msg).join("; ");
+        } else if (json.message) {
+          errMsg = json.message;
+        }
+      } catch {
+        // 不是 JSON，则直接把文本当错误展示
+        errMsg = text || errMsg;
+      }
+
+      setError(errMsg);
+      return;
     }
+
+    // 成功
+    alert("successfully updated!");
   };
 
   return (
@@ -51,7 +70,7 @@ export default function ProfileForm({ privateData }) {
       </label>
       <label className="block">
         Introduction:
-        <Textarea
+        <textarea
           name="bio"
           value={form.bio}
           onChange={handleChange}
