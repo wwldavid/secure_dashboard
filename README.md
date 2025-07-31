@@ -24,4 +24,16 @@
     node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
     Save it to .env file as an environment variable
 
-11.
+### NextAuth.js
+
+11. npm install next-auth bcrypt @prisma/client
+
+12. Add two fields to the User model: email String @unique and passwordHash String.
+    npx prisma migrate dev --name add_email_and_password
+
+13. openssl rand -base64 32
+    add NEXTAUTH_SECRET in .env
+
+14. npm install bcrypt
+
+15.
