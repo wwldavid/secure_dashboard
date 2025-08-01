@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import escapeHTML from "escape-html";
+import { useRouter } from "next/navigation";
 
 export default function ProfileForm({ privateData }) {
   const [form, setForm] = useState(privateData);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -45,6 +47,7 @@ export default function ProfileForm({ privateData }) {
 
     // 成功
     alert("successfully updated!");
+    router.refresh();
   };
 
   return (
@@ -78,7 +81,10 @@ export default function ProfileForm({ privateData }) {
           rows={8}
         />
       </label>
-      <button type="submit" className="px-4 py-2 bg-[#6e7955] text-white">
+      <button
+        type="submit"
+        className="px-4 py-1 rounded-sm bg-[#6e7955] text-white"
+      >
         Save
       </button>
     </form>

@@ -22,9 +22,8 @@ export default function LoginPage() {
     });
 
     if (res.error) {
-      setError("登录失败，请检查邮箱或密码");
+      setError("Login failed. Please check your email and password.");
     } else {
-      // 登录成功跳到仪表盘
       router.push("/dashboard");
     }
   };

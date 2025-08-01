@@ -23,9 +23,8 @@ export default function SignUpPage() {
 
     if (!res.ok) {
       const { message } = await res.json();
-      setError(message || "注册失败");
+      setError(message || "Registration failed.");
     } else {
-      // 注册成功后直接跳到登录页
       router.push("/login");
     }
   };
@@ -75,7 +74,7 @@ export default function SignUpPage() {
           type="submit"
           className="w-full px-4 py-2 bg-green-600 text-white rounded"
         >
-          注册
+          Sign Up
         </button>
       </form>
     </div>
